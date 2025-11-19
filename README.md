@@ -1,77 +1,105 @@
-🚚 LogiPack – Sistema de Gestión de Entregas
+# 🚚 LogiPack – Sistema de Gestión de Entregas  
+Aplicación web desarrollada con **Flask** para la gestión integral de paquetes, transportes y entregas en la empresa logística *LogiPack*.
 
-Aplicación web desarrollada con Flask para la gestión integral de paquetes, transportes y entregas en la empresa logística LogiPack.
+---
 
-📦 Descripción General
-
+## 📦 Descripción General  
 Este proyecto implementa una plataforma que permite a despachantes y repartidores gestionar el flujo completo de envíos: desde el registro del paquete hasta su entrega final. Incluye módulos para registro, asignación, salida y llegada de transportes.
 
-⭐ Funcionalidades Principales
-🏢 Selección de Sucursal
+---
 
-Pantalla inicial donde el despachante selecciona la sucursal en la que operará.
+## ⭐ Funcionalidades Principales
 
-Información organizada por número, provincia y localidad, disponible en una lista desplegable.
+### 🏢 Selección de Sucursal  
+- Pantalla inicial donde el **despachante** selecciona la sucursal donde operará.  
+- Información organizada por:  
+  - Número  
+  - Provincia  
+  - Localidad  
+- Presentación mediante una lista desplegable ordenada.
 
-📬 Registro de Paquetes
+### 📬 Registro de Paquetes  
+- Formularios para la recepción de nuevos pedidos.  
+- Datos registrados:  
+  - Peso  
+  - Nombre del destinatario  
+  - Dirección  
+- Generación automática de un **número único de envío**.  
+- Estado inicial del paquete: **No entregado**.
 
-Formularios para la recepción de nuevos pedidos.
+### 🚛 Gestión de Transportes  
+- Registro de **salida de transportes**:  
+  - Selección de sucursal de destino  
+  - Asignación de paquetes a trasladar  
+  - Fecha y hora de salida  
+- Registro de **llegada de transportes**:  
+  - Actualización de fecha y hora mediante formulario de confirmación
 
-Se registran: peso, nombre del destinatario y dirección.
+### 📦➡️🧍‍♂️ Asignación de Paquetes y Entregas (Repartidores)  
+- Asignación de paquetes a repartidores realizada por el despachante.  
+- Acceso de repartidores mediante **número y DNI**.  
+- Funcionalidades:  
+  - Registrar la **entrega** de paquetes  
+  - Registrar **observaciones** en caso de no entrega
 
-Generación automática de un número único de envío.
+---
 
-Los paquetes se marcan inicialmente como no entregados.
+## 🛠️ Tecnologías e Infraestructura
 
-🚛 Gestión de Transportes
+### 🔧 Backend  
+- **Flask** para manejo de rutas y peticiones (GET/POST).  
+- **SQLAlchemy** para persistencia de datos.  
+- Modelos del sistema:  
+  - Sucursales  
+  - Transportes  
+  - Repartidores  
+  - Paquetes  
 
-Módulo para registrar la salida de transportes:
+### 🗂️ Organización del Proyecto  
+- `app.py`: Lógica principal del sistema  
+- `models/`: Modelos de base de datos  
+- `config.py`: Configuración  
+- `templates/`: Archivos HTML  
+- `static/`: CSS y recursos estáticos  
+- Estructura modular siguiendo buenas prácticas de desarrollo web
 
-Selección de sucursal de destino.
+---
 
-Asignación de paquetes a trasladar.
+## 🧩 Diagrama del Sistema (Mermaid)
 
-Registro de fecha y hora de salida.
+```mermaid
+flowchart TD
 
-Módulo para registrar la llegada del transporte:
+    subgraph Usuario
+        D[Despachante]
+        R[Repartidor]
+    end
 
-Actualización de fecha y hora mediante formulario de confirmación.
+    subgraph Sistema_LogiPack
+        A[Selección de Sucursal]
+        B[Registro de Paquetes]
+        C[Gestión de Transportes]
+        D1[Asignación de Paquetes]
+        E[Registro de Entregas]
+    end
 
-📦➡️🧍‍♂️ Asignación de Paquetes y Entregas (Repartidores)
+    subgraph Base_de_Datos
+        S[Sucursales]
+        P[Paquetes]
+        T[Transportes]
+        RP[Repartidores]
+    end
 
-El despachante puede asignar paquetes a repartidores.
+    D --> A
+    D --> B
+    D --> C
+    D --> D1
 
-Los repartidores acceden con número y DNI para:
+    R --> E
 
-Registrar la entrega de los paquetes.
+    A --> S
+    B --> P
+    C --> T
+    D1 --> RP
+    E --> P
 
-Indicar observaciones en caso de no poder entregar.
-
-🛠️ Tecnologías e Infraestructura
-🔧 Backend
-
-Flask para la gestión de rutas y manejo de solicitudes (GET/POST).
-
-SQLAlchemy para la persistencia de datos mediante modelos que representan:
-
-Sucursales
-
-Transportes
-
-Repartidores
-
-Paquetes
-
-🗂️ Organización del Proyecto
-
-app.py: lógica principal de la aplicación.
-
-Modelos: representan las entidades del sistema.
-
-config.py: parámetros de configuración.
-
-templates/: vistas HTML.
-
-static/: archivos CSS y otros recursos.
-
-Estructura modular siguiendo buenas prácticas de desarrollo web.
