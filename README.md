@@ -1,4 +1,5 @@
 # 🚚 LogiPack – Sistema de Gestión de Entregas  
+[![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python&logoColor=white)](https://www.python.org/)
 Aplicación web desarrollada con **Flask** para la gestión integral de paquetes, transportes y entregas en la empresa logística *LogiPack*.
 
 ---
