@@ -1,0 +1,16 @@
+h1 {
+    color: red
+}
+
+h2 {
+    color: yellowgreen
+}
+
+a {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px
+}

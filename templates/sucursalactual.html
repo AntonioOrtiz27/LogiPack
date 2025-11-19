@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccionar Sucursal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Seleccionar Sucursal</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="sucursal_id">Seleccione la sucursal:</label>
+                <select id="sucursal_id" name="sucursal_id">
+                    {% for sucursal in sucursales %}
+                    <option value="{{ sucursal.id }}">{{ sucursal.numero }} - {{ sucursal.provincia }} - {{
+                        sucursal.localidad }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <input type="submit" value="Seleccionar Sucursal" class="css-button-3d--blue">
+        </form>
+        <a class="btn-secondary" href="{{ url_for('inicio') }}">Volver a la página principal</a>
+    </div>
+</body>
+
+</html>

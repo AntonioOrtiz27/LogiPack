@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salida de Transporte</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Salida de Transporte</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul class="messages">
+      {% for category, message in messages %}
+      <li class="alert alert-{{ category }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
+    <h2>Seleccione la sucursal destino del transporte:</h2>
+    <form method="POST" action="{{ url_for('transporte_paquetes') }}">
+      <div class="form-group">
+        <label for="sucursal_destino">Sucursal destino:</label>
+        <select id="sucursal_destino" name="sucursal_destino" required>
+          {% for sucursal in sucursales %}
+          <option value="{{ sucursal.id }}">{{ sucursal.numero }} - {{ sucursal.provincia }} - {{ sucursal.localidad }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <h2>Seleccione los paquetes para transportar:</h2>
+      {% if paquetes %}
+      <table>
+        <thead>
+          <tr>
+            <th>Seleccionar</th>
+            <th>Número de Envío</th>
+            <th>Dirección del Destinatario</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for paquete in paquetes %}
+          <tr>
+            <td><input type="checkbox" name="paquetes" value="{{ paquete.id }}"></td>
+            <td>{{ paquete.numeroenvio }}</td>
+            <td>{{ paquete.dirdestinatario }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p class="alert alert-warning">No hay paquetes que cumplan con los criterios especificados.</p>
+      {% endif %}
+      <input type="submit" value="Asignar Paquetes al Transporte" class="css-button-3d--blue">
+    </form>
+    <br>
+    <a class="btn-secondary" href="{{ url_for('opcion') }}">Seleccionar otra Opción</a>
+    <a class="btn-secondary" href="{{ url_for('inicio') }}">Volver a la página principal</a>
+  </div>
+</body>
+
+</html>

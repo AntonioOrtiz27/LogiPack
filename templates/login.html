@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logipack</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body class="container">
+    <h1 class="mt-5">Iniciar Sesión</h1>
+    <h2 class="my-4">Repartidor</h2>
+    <ul class="list-unstyled">
+        {% for category, message in get_flashed_messages(with_categories=true) %}
+        <li class="alert alert-{{ category }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    <form action="{{ url_for('login') }}" method="POST" class="container">
+        <div class="form-group">
+            <label for="numero">Número de Repartidor</label>
+            <input type="text" class="form-control" name="numero" placeholder="Ingrese número" />
+        </div>
+        <div class="form-group">
+            <label for="DNI">DNI</label>
+            <input type="text" class="form-control" name="dni" placeholder="Ingrese dni" />
+        </div>
+        <input type="submit" class="btn btn-primary" value="Guardar" />
+    </form>
+    <br>
+    <a class="btn btn-secondary" href="{{ url_for('inicio') }}">Volver a la página principal</a>
+</body>
+
+</html>
+

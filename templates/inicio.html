@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logipack</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+
+<body>
+    <div class="container">
+        <h1>LOGIPACK</h1>
+        <h2>¡Bienvenido a Logipack! Esta es una aplicación web para gestionar el inventario de una empresa. Para
+            comenzar,
+            debes ingresar a la aplicación haciendo clic en el botón de abajo.</h2>
+        <a class="btn-primary" href="{{ url_for('sucursalactual') }}">Ingresar a la aplicación como Despachante</a>
+        <a class="btn-secondary" href="{{ url_for('login') }}">Ingresar a la aplicación como Repartidor</a>
+    </div>
+</body>
+
+</html>
+
+

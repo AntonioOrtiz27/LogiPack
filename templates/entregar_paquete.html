@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entregar Paquete</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="mt-5">Entregar Paquete</h1>
+        <ul class="list-unstyled">
+            {% for category, message in get_flashed_messages(with_categories=true) %}
+            <li class="alert alert-{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        <form method="POST" action="{{ url_for('entregar_paquete') }}" class="my-4">
+            <div class="form-group">
+                <label for="numeroenvio">Número de Envío:</label>
+                <input type="text" class="form-control" name="numeroenvio" id="numeroenvio" required>
+            </div>
+            <input type="submit" class="css-button-3d--blue" value="Buscar Paquete" />
+            <a class="btn-secondary mt-3" href="{{ url_for('inicio') }}" >Volver al Menu Principal</a>
+        </form>
+
+        {% if paquete %}
+        <div class="card mt-4">
+            <div class="card-header">
+                Detalles del Paquete
+            </div>
+            <div class="card-body">
+                <p><strong>Número de Envío:</strong> {{ paquete.numeroenvio }}</p>
+                <p><strong>Peso:</strong> {{ paquete.peso }}</p>
+                <p><strong>Destinatario:</strong> {{ paquete.nomdestinatario }}</p>
+                <p><strong>Dirección de Destino:</strong> {{ paquete.dirdestinatario }}</p>
+
+                <form method="POST" action="{{ url_for('registrar_entrega') }}">
+                    <input type="hidden" name="paquete_id" value="{{ paquete.id }}">
+
+                    <div class="form-group">
+                        <label for="estado">Estado:</label>
+                        <select class="form-control" id="estado" name="estado" required>
+                            <option value="entregado">Entregado</option>
+                            <option value="no_entregado">No entregado</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="estado" name="estado" required>
+                        <label for="observaciones">Observaciones:</label>
+                        <textarea class="form-control" placeholder="Dirección no encontrada, No se encontró destinatario, etc." id="observaciones" name="observaciones" rows="3"required></textarea>
+                    </div>
+
+                    <input type="submit" class="css-button-3d--blue" value="Registrar">
+                </form>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</body>
+
+</html>

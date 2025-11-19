@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Llegada de Transporte</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body class="container">
+    <h1>Llegada de Transportes</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul class="list-unstyled">
+        {% for category, message in messages %}
+        <li class="alert alert-{{ category }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
+    <h2>Transportes Pendientes de Llegada</h2>
+    {% if transportes %}
+    <form method="POST" action="{{ url_for('llegada_transporte') }}">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Seleccionar</th>
+                        <th scope="col">Número de Transporte</th>
+                        <th scope="col">Fecha y Hora de Salida</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transporte in transportes %}
+                    <tr>
+                        <td><input type="radio" name="transporteid" value="{{ transporte.id }}"
+                                class="form-check-input"></td>
+                        <td>{{ transporte.numerotransporte }}</td>
+                        <td>{{ transporte.fechahorasalida }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Registrar Llegada">
+    </form>
+    {% else %}
+    <p class="alert alert-warning">No hay transportes pendientes de llegada para esta sucursal.</p>
+    {% endif %}
+    <div>
+        <a class="btn btn-secondary" href="{{ url_for('sucursalactual') }}">Seleccionar otra Sucursal</a>
+        <a class="btn btn-secondary" href="{{ url_for('opcion') }}">Seleccionar otra Opción</a>
+        <a class="btn btn-secondary" href="{{ url_for('inicio') }}">Volver a la página principal</a>
+    </div>
+</body>
+
+</html>

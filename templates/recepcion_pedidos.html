@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Paquete</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Registrar Paquete</h1>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <ul class="messages">
+            {% for category, message in messages %}
+            <li class="alert alert-{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        <form method="POST">
+            <div class="form-group">
+                <label for="dirdes">Dirección del destinatario:</label>
+                <input type="text" id="dirdes" name="dirdes" placeholder="Dirección del destinatario" />
+            </div>
+            <div class="form-group">
+                <label for="nomdes">Nombre del destinatario:</label>
+                <input type="text" id="nomdes" name="nomdes" placeholder="Nombre del destinatario" required />
+            </div>
+            <div class="form-group">
+                <label for="peso">Peso:</label>
+                <input type="text" id="peso" name="peso" placeholder="Peso" required />
+            </div>
+            <div class="form-group">
+                <label for="idsucursal">Sucursal de destino:</label>
+                <select id="idsucursal" name="idsucursal" required>
+                    {% for sucursal in sucursales %}
+                    <option value="{{ sucursal.id }}">{{ sucursal.numero }} - {{ sucursal.provincia }} - {{
+                        sucursal.localidad }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <input type="submit" value="Registrar Paquete" class="css-button-3d--blue">
+        </form>
+        <a class="btn-secondary" href="{{ url_for('inicio') }}">Volver a la página principal</a>
+        <a class="btn-secondary" href="{{ url_for('opcion') }}">Seleccionar otra Opción</a>
+    </div>
+</body>
+
+</html>
+

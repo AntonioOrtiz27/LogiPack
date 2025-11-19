@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funcionalidades Principales</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Opciones de Usuario</h1>
+        <h2>Selecciona una opción:</h2>
+        <a href="{{url_for('registrar_paquete')}}" class="btn-primary">Recepción de Pedidos</a><br>
+        <a href="{{ url_for('transporte_paquetes') }}" class="btn-primary">Salida de Transporte</a><br>
+        <a href="{{ url_for('llegada_transporte') }}" class="btn-primary">Llegada de Transporte</a><br>
+        <a href="{{url_for('asignar_repartidor')}}" class="btn-primary">Asignar paquetes a repartidor</a>
+        <h3><a class="btn-secondary" href="{{ url_for('inicio') }}">Volver a la página principal</a></h3>
+    </div>
+</body>
+
+</html>
+

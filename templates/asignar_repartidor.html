@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asignar Paquete a Repartidor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body class="container">
+    <h1>Asignar Paquetes a Repartidor</h1>
+    {% for category, message in get_flashed_messages(with_categories=true) %}
+    <p class="alert alert-{{ category }}">{{ message }}</p>
+    {% endfor %}
+    <form method="POST" action="{{ url_for('asignar_repartidor') }}">
+        <div class="form-group">
+            <label for="repartidor">Seleccionar Repartidor:</label>
+            <select name="repartidor" id="repartidor" class="form-control" required>
+                {% for repartidor in repartidores %}
+                <option value="{{ repartidor.id }}">{{ repartidor.nombre }} - DNI: {{ repartidor.dni }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <h2>Paquetes Disponibles:</h2>
+        {% for paquete in paquetes %}
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="paquetes" value="{{ paquete.id }}"
+                id="paquete{{ paquete.id }}">
+            <label class="form-check-label" for="paquete{{ paquete.id }}">Nº de Envío: {{ paquete.numeroenvio }},
+                Dirección: {{ paquete.dirdestinatario }}</label><br>
+        </div>
+        {% endfor %}
+        <button type="submit" class="css-button-3d--blue">Asignar Paquetes</button>
+    </form>
+    <a class="btn btn-secondary" href="{{ url_for('inicio') }}">Volver a la página principal</a>
+    <a class="btn btn-secondary" href="{{ url_for('opcion')}}">Seleccionar Otra Opción</a>
+</body>
+
+</html>

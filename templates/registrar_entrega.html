@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Entrega</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="mt-5">Registrar Entrega</h1>
+        <ul class="list-unstyled">
+            {% for category, message in get_flashed_messages(with_categories=true) %}
+            <li class="alert alert-{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        <div class="card mt-4">
+            <div class="card-header">
+                Detalles del Paquete
+            </div>
+            <div class="card-body">
+                <p><strong>Número de Envío:</strong> {{ paquete.numeroenvio }}</p>
+                <p><strong>Peso:</strong> {{ paquete.peso }}</p>
+                <p><strong>Destinatario:</strong> {{ paquete.nomdestinatario }}</p>
+                <p><strong>Dirección de Destino:</strong> {{ paquete.dirdestinatario }}</p>
+                <form method="POST" action="{{ url_for('registrar_entrega') }}">
+                    <input type="hidden" name="paquete_id" value="{{ paquete.id }}">
+                    <div class="form-group">
+                        <label for="estado">Estado:</label>
+                        <select class="form-control" id="estado" name="estado" required>
+                            <option value="entregado">Entregado</option>
+                            <option value="no_entregado">No entregado</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="entregado_info" style="display: none;">
+                        <label for="nombre_dni_recibido">Nombre y DNI de quien recibió:</label>
+                        <input type="text" class="form-control" id="nombre_dni_recibido" name="nombre_dni_recibido">
+                    </div>
+                    <div class="form-group" id="razon_no_entregado" style="display: none;">
+                        <label for="razon">Razón de no entrega:</label>
+                        <select class="form-control" id="razon" name="razon">
+                            <option value="">Seleccionar Razón</option>
+                            <option value="direccion_no_encontrada">Dirección no encontrada</option>
+                            <option value="negacion_a_recibir">Negación a recibir</option>
+                            <option value="no_se_encontro_destinatario">No se encontró destinatario</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                        <div id="otra_razon" style="display: none;">
+                            <label for="otra_razon_text">Especifique otra razón:</label>
+                            <textarea class="form-control" id="otra_razon_text" name="otra_razon_text"
+                                rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="observaciones">Observaciones:</label>
+                        <textarea class="form-control" id="observaciones" name="observaciones" rows="3"
+                            required></textarea>
+                    </div>
+                    <input type="submit" class="btn btn-success" value="Registrar">
+                </form>
+            </div>
+        </div>
+        <a class="btn btn-secondary mt-3" href="{{ url_for('entregar_paquete') }}">Volver</a>
+    </div>
+</body>
+
+</html>
