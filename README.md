@@ -8,9 +8,9 @@ Este proyecto implementa una plataforma que permite a despachantes y repartidore
 
 ---
 
-## ⭐ Funcionalidades Principales
+## Funcionalidades Principales
 
-### 🏢 Selección de Sucursal  
+### Selección de Sucursal  
 - Pantalla inicial donde el **despachante** selecciona la sucursal donde operará.  
 - Información organizada por:  
   - Número  
@@ -44,9 +44,9 @@ Este proyecto implementa una plataforma que permite a despachantes y repartidore
 
 ---
 
-## 🛠️ Tecnologías e Infraestructura
+## Tecnologías e Infraestructura
 
-### 🔧 Backend  
+### Backend  
 - **Flask** para manejo de rutas y peticiones (GET/POST).  
 - **SQLAlchemy** para persistencia de datos.  
 - Modelos del sistema:  
@@ -55,7 +55,7 @@ Este proyecto implementa una plataforma que permite a despachantes y repartidore
   - Repartidores  
   - Paquetes  
 
-### 🗂️ Organización del Proyecto  
+### Organización del Proyecto  
 - `app.py`: Lógica principal del sistema  
 - `models/`: Modelos de base de datos  
 - `config.py`: Configuración  
@@ -65,7 +65,7 @@ Este proyecto implementa una plataforma que permite a despachantes y repartidore
 
 ---
 
-## 🧩 Diagrama del Sistema (Mermaid)
+##  Diagrama del Sistema
 
 ```mermaid
 flowchart TD
